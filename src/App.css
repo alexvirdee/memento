@@ -21,3 +21,11 @@ body {
 .header-btn {
   border: 1px solid #D7D7D7;
 }
+
+.memento-purple {
+  color: #504CCF;
+}
+
+.memento-purple-bg {
+  background-color: #504CCF;
+}
