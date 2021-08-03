@@ -29,3 +29,8 @@ body {
 .memento-purple-bg {
   background-color: #504CCF;
 }
+
+.collections-container {
+  background-color: #F5F5F5;
+  border: 1px solid #D7D7D7;
+}
