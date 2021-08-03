@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './App.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import './fonts/Open_Sans,Reem_Kufi/Reem_Kufi/static/ReemKufi-Regular.ttf';
 
 ReactDOM.render(
   <React.StrictMode>
