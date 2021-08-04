@@ -7,6 +7,7 @@ const Header = () => {
     <div className="main-header flex p-8 justify-around">
         <div className="flex flex-row">
         <img
+          alt="memento-logo"
           src={logo}
           className="w-16 h-16 border-none"
         />
@@ -14,9 +15,9 @@ const Header = () => {
         Memento
       </div>
       </div>
-      <button className="header-btn bg-white py-0 px-2 rounded">
+      <button className="flex flex-row header-btn bg-white px-4 py-0 rounded items-center h-12">
         <Icon icon="user" size={20} color="#504CCF" />
-        <nbsp className="mr-4"></nbsp>
+        <div className="mr-4">&nbsp;</div>
         <Icon icon="cog" size={20} color="#504CCF" />
       </button>
     </div>
