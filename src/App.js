@@ -9,50 +9,65 @@ function App() {
     {
       text: 'Coins',
       disabled: false,
+      editMode: true
     },
     {
       text: 'World War II Stamps',
       disabled: true,
+      editMode: false
     },
     {
       text: 'Faberge Eggs',
       disabled: true,
+      editMode: false
     },
   ]);
   //
   const newMementText = useRef('');
   //
   function addNew() {
-    const newMements = [...mements, { text: '', disabled: false }];
+    const newMements = [...mements, { text: '', disabled: false, editMode: true }];
     console.log(newMements);
     setMements(newMements);
   }
   //
   function saveMement(index, message) {
     let allMements = [...mements];
-    allMements[index].text = message;
-    newMementText.current = allMements[index].text = message;
+    // Check for existing mements from initial array
+    if (allMements[index].text !== "") {
+      message = allMements[index].text;
+    }
+    //
+    if (message.length > 1) {
+      allMements[index].text = message;
+    } else if (message === '') {
+      alert('Please add some text to save collection');
+      return;
+    }
+    //
     allMements[index].disabled = true;
     //
     setMements(allMements);
     console.log(allMements, newMementText.current);
   }
   //
-  function editMement(index, message) {
+  function editMement(index) {
     let allMements = [...mements];
-    allMements[index].text = message;
     allMements[index].disabled = false;
+    allMements[index].editMode = true;
     //
     setMements(allMements);
-    console.log(allMements);
+    console.log("Edit mode called", allMements);
   }
   //
   function removeMement(index) {
     const allMements = [...mements];
+    console.log(index, allMements.splice(index, 1));
     allMements.splice(index, 1);
     setMements(allMements);
   }
   //
+  console.log('re-render');
   return (
     <div className="App">
       <Header />
@@ -70,7 +85,7 @@ function App() {
                 disabled={mement.disabled}
                 remove={() => removeMement(index)}
                 save={(indexB, message) => saveMement(indexB, message)}
-                edit={(indexB, message) => editMement(indexB, message)}
+                edit={() => editMement(index)}
               />
             );
           })}

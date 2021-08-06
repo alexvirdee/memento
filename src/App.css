@@ -11,11 +11,21 @@
   url('./fonts/Open_Sans\,Reem_Kufi/Reem_Kufi/static/ReemKufi-Regular.ttf');
 }
 
+@font-face {
+  font-family: "Open_Sans";
+  src: local("Open_Sans"),
+  url('./fonts/Open_Sans\,Reem_Kufi/Open_Sans/OpenSans-Regular.ttf');
+}
+
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'ReemKufi-Regular', 'Open_Sans'
+}
+
+.open-sans {
+  font-family: 'Open_Sans';
 }
 
 .header-btn {
