@@ -46,7 +46,7 @@ function App() {
       ...mements,
       { text: '', disabled: false, editMode: true },
     ];
-    console.log(newMements);
+    //
     setMements(newMements);
   }
   //
@@ -68,13 +68,10 @@ function App() {
       return;
     }
     //
-
-    console.log('Save mements func called.', newMementText.current);
-    //
     allMements[index].disabled = true;
     //
     localStorage.setItem('mements', JSON.stringify(allMements));
-    allMements[index].text = hldMement.current;
+    allMements[index].text = newMementText.current;
     //
     setMements(allMements);
   }
@@ -85,7 +82,6 @@ function App() {
     allMements[index].editMode = true;
     //
     setMements(allMements);
-    console.log('Edit mode called', allMements);
   }
   //
   function removeMement(index) {
@@ -94,8 +90,6 @@ function App() {
     localStorage.setItem('mements', JSON.stringify(allMements));
     setMements(allMements);
   }
-  //
-  console.log('re-render');
   //
   return (
     <div className="App">
