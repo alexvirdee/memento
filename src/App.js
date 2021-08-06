@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './App.css';
 import Header from './components/Header';
 import Mement from './components/Mement';
@@ -9,46 +9,74 @@ function App() {
     {
       text: 'Coins',
       disabled: false,
-      editMode: true
+      editMode: true,
     },
     {
       text: 'World War II Stamps',
       disabled: true,
-      editMode: false
+      editMode: false,
     },
     {
       text: 'Faberge Eggs',
       disabled: true,
-      editMode: false
+      editMode: false,
     },
   ]);
   //
   const newMementText = useRef('');
+  const hldMement = useRef('');
+  //
+  //
+  // Get localStorage mements
+  //
+  useEffect(() => {
+    //
+    function checkforData() {
+      const items = JSON.parse(localStorage.getItem('mements'));
+      //
+      if (items) {
+        setMements(items);
+      }
+    }
+    checkforData();
+  }, []);
   //
   function addNew() {
-    const newMements = [...mements, { text: '', disabled: false, editMode: true }];
+    const newMements = [
+      ...mements,
+      { text: '', disabled: false, editMode: true },
+    ];
     console.log(newMements);
     setMements(newMements);
   }
   //
   function saveMement(index, message) {
     let allMements = [...mements];
-    // Check for existing mements from initial array
-    if (allMements[index].text !== "") {
-      message = allMements[index].text;
-    }
     //
-    if (message.length > 1) {
+    // Check mements from initial array
+    //
+    if (allMements[index].text !== '') {
+      message = allMements[index].text;
+    } else if (message.length > 1) {
       allMements[index].text = message;
+      newMementText.current = message;
+      if (newMementText.current > message) {
+        hldMement.current = message;
+      }
     } else if (message === '') {
       alert('Please add some text to save collection');
       return;
     }
     //
+
+    console.log('Save mements func called.', newMementText.current);
+    //
     allMements[index].disabled = true;
     //
+    localStorage.setItem('mements', JSON.stringify(allMements));
+    allMements[index].text = hldMement.current;
+    //
     setMements(allMements);
-    console.log(allMements, newMementText.current);
   }
   //
   function editMement(index) {
@@ -57,17 +85,18 @@ function App() {
     allMements[index].editMode = true;
     //
     setMements(allMements);
-    console.log("Edit mode called", allMements);
+    console.log('Edit mode called', allMements);
   }
   //
   function removeMement(index) {
     const allMements = [...mements];
-    console.log(index, allMements.splice(index, 1));
     allMements.splice(index, 1);
+    localStorage.setItem('mements', JSON.stringify(allMements));
     setMements(allMements);
   }
   //
   console.log('re-render');
+  //
   return (
     <div className="App">
       <Header />

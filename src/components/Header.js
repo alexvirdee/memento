@@ -4,7 +4,7 @@ import logo from '../assets/logo.png';
 
 const Header = () => {
   return (
-    <div className="main-header flex py-4 pb-8 justify-around sm:sticky sm:top-0 sm:bg-gray-200 md:bg-transparent">
+    <div className="main-header flex py-4 pb-8 justify-around sm:z-20 sm:sticky sm:top-0 sm:bg-gray-200 md:bg-transparent md:static">
         <div className="flex flex-row">
         <img
           alt="memento-logo"
